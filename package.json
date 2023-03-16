@@ -1,0 +1,19 @@
+{
+  "name": "socket-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewdev02/Chat.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drewdev02/Chat/issues"
+  },
+  "homepage": "https://github.com/drewdev02/Chat#readme"
+}
