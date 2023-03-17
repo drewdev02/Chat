@@ -2,15 +2,19 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
-const dotenv = require('dotenv').config();
+const { authMiddleware } = require('../middleware/middleware.js');
+const { decode } = require('punycode');
+
+
+
 
 const router = express.Router();
 
-const keyJWT = process.env.keyJWT 
+const keyJWT = process.env.keyJWT
 const expiresJWT = process.env.expiresJWT
 
 router.post('/register', async (req, res) => {
-  const { username, correo, password, role } = req.body;
+  const { username, correo, password, rol } = req.body;
 
   try {
     // Comprobar si el usuario ya existe
@@ -20,9 +24,9 @@ router.post('/register', async (req, res) => {
     }
 
     //Comprobacion si el correo existe
-    const existingCorreo = await User.findOne({correo});
-    if (existingCorreo){
-      return res.status(409).json({message: 'La direccion de Correo ya existe para un Usuario'});
+    const existingCorreo = await User.findOne({ correo });
+    if (existingCorreo) {
+      return res.status(409).json({ message: 'La direccion de Correo ya existe para un Usuario' });
     }
 
     // Cifrar la contraseña
@@ -30,7 +34,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Crear el nuevo usuario
-    const user = new User({ username, correo, password: hashedPassword, role });
+    const user = new User({ username, correo, password: hashedPassword, rol });
     await user.save();
 
     res.status(201).json({ message: 'Usuario creado' });
@@ -44,21 +48,20 @@ router.post('/login', async (req, res) => {
 
   try {
     // Comprobar si el usuario existe
-    const email  = await User.findOne({ correo });
-    if (!email) {
+    const user = await User.findOne({ correo });
+    if (!user) {
       return res.status(401).json({ message: 'Direccion de correo o contrasena incorrecto' });
     }
 
-
     // Comprobar la contraseña
-    const isMatch = await bcrypt.compare(password, User.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Direccion de correo o contraseña incorrectos' });
     }
 
     // Generar un JWT
     const token = jwt.sign(
-      { username: User.username, role: User.role },
+      { username: User.username, rol: User.rol },
       "mi_secreto",
       { expiresIn: "1h" }
     );
@@ -69,5 +72,22 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Error al iniciar sesión' });
   }
 });
+
+router.get('/users', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (user.rol !== 'admin') {
+      return res.status(403).json({ message: 'No tienes permiso para acceder a esta ruta' });
+    }
+  
+    const users = await User.find();
+    res.status(200).json({users});
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Error al obtener los usuarios' });
+  }
+});
+
 
 module.exports = router;

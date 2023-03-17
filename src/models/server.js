@@ -16,6 +16,7 @@ class Server {
 
         this.paths = {
             auth:       '/api/v1/auth',
+            admin:      '/api/v1/auth'
             //usuarios:   '/api/usuarios',
             
         }
@@ -66,7 +67,8 @@ class Server {
 
     routes() {
         
-        this.app.use( this.paths.auth, require('../routes/auth.js'));       
+        this.app.use( this.paths.auth, require('../routes/auth.js'));
+        //this.app.use(this.paths.admin, require('../routes/auth.js'));       
         //this.app.use( this.paths.usuarios, require('../routes/usuarios'));     
         
     }

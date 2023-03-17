@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/users', authMiddleware, async (req, res) => {
   try {
     // Comprobar el rol del usuario que ha iniciado sesión
-    if (req.user.role !== 'admin') {
+    if (req.user.role !== 'ADMIN_ROLE') {
       return res.status(403).json({ message: 'No tienes permiso para acceder a esta ruta' });
     }
 
