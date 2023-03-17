@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="sign-up.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container-content-center">
+            <div class="container-col">
+                <h1 class="text">Create an account</h1>
+                <form>
+                    <div class="container_form">
+                        <label for="user" class="form-label">User</label>
+                        <input type="text" class="form-input" id="user" placeholder="Enter username">
+                    </div>
+                    <div class="container_form">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-input" id="email" placeholder="Enter email">
+                    </div>
+                    <div class="container_form">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-input" id="password" placeholder="Enter password">
+                    </div>
+                    <div class="container_form">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" id="confirmPassword" placeholder="Confirm password">
+                    </div>
+                    <label for="checkbox">Role</label>
+                        <div class="form-check">
+                          <label class="form-check-role">
+                            <input type="checkbox" class="form-checkbox" name="" id="role" value="checkedValue" >
+                            Admin
+                          </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container-button">
+            <button class="button" id="signUpButton">Sign Up</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="sign-up.js"></script>
+</body>
+</html>
