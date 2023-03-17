@@ -6,6 +6,9 @@ const { createServer } = require('http');
 const { dbConnection } = require('../database/database.js');
 //const { socketController } = require('../sockets/controller');
 
+
+
+
 class Server {
 
     constructor() {
@@ -16,10 +19,12 @@ class Server {
 
         this.paths = {
             auth:       '/api/v1/auth',
-            admin:      '/api/v1/auth'
-            //usuarios:   '/api/usuarios',
+            admin:      '/api/v1/auth',
+            principal:  '/api/v1/princ'
             
         }
+
+        
 
 
         // Conectar a base de datos
@@ -54,7 +59,9 @@ class Server {
         // Directorio Público
         this.app.use( express.static('public') );
 
-       
+        this.app.set('view engine', 'ejs'); // Establecer el motor de plantillas
+        this.app.set('views', './src/views'); // Establecer la ruta de las vistas
+
         // Fileupload - Carga de archivos
         /*
         this.app.use( fileUpload({
@@ -68,7 +75,7 @@ class Server {
     routes() {
         
         this.app.use( this.paths.auth, require('../routes/auth.js'));
-        //this.app.use(this.paths.admin, require('../routes/auth.js'));       
+        this.app.use(this.paths.principal, require('../routes/principal.js'));       
         //this.app.use( this.paths.usuarios, require('../routes/usuarios'));     
         
     }
