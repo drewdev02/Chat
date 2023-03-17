@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
 
     // Generar un JWT
     const token = jwt.sign(
-      { username: User.username, rol: User.rol },
+      { username: user.username, rol: user.rol },
       "mi_secreto",
       { expiresIn: "1h" }
     );
@@ -75,16 +75,15 @@ router.post('/login', async (req, res) => {
 
 router.get('/users', authMiddleware, async (req, res) => {
   try {
-    const userId = req.user.id;
-    const user = await User.findById(userId);
-    if (user.rol !== 'admin') {
+    // Comprobar el rol del usuario que ha iniciado sesión
+    if (req.user.rol !== 'admin') {
       return res.status(403).json({ message: 'No tienes permiso para acceder a esta ruta' });
     }
   
     const users = await User.find();
-    res.status(200).json({users});
+    res.status(200).json({ users });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ message: 'Error al obtener los usuarios' });
   }
 });
