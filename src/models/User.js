@@ -1,5 +1,8 @@
-const UsuarioSchema = Schema({
-    nombre: {
+
+const { Schema, model, default: mongoose } = require('mongoose');
+
+const UsuarioSchema = new mongoose.Schema({
+    username: {
         type: String,
         required: [true, 'El nombre es obligatorio']
     },
@@ -23,3 +26,6 @@ const UsuarioSchema = Schema({
         default: true
     }
 });
+
+
+module.exports = mongoose.model('User', UsuarioSchema);

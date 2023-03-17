@@ -1,11 +1,36 @@
 const mongoose = require('mongoose');
-const dotenv = require("dotenv").config();
 
-const PORT = process.env.PORT || 3001
-const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:3001/loginChat"
-// Conexión a la base de datos
-const mongoConnection = () => mongoose.connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-module.exports = { mongoConnection, PORT };
+const user = process.env.user
+const pass = process.env.pass
+const namedatabase = process.env.namedatabase
+const URL = `mongodb+srv://${user}:${pass}@cluster0.abhqnha.mongodb.net/${namedatabase}`
+
+
+
+const dbConnection = async() => {
+
+    try {
+
+        await mongoose.connect( URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            //useCreateIndex: true,
+            //useFindAndModify: false
+        });
+    
+        console.log('Base de datos online');
+
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error a la hora de iniciar la base de datos');
+    }
+
+
+}
+
+
+
+
+module.exports = {
+    dbConnection
+}

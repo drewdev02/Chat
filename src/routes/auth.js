@@ -2,11 +2,15 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
+const dotenv = require('dotenv').config();
 
 const router = express.Router();
 
+const keyJWT = process.env.keyJWT 
+const expiresJWT = process.env.expiresJWT
+
 router.post('/register', async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, correo, password, role } = req.body;
 
   try {
     // Comprobar si el usuario ya existe
@@ -15,12 +19,18 @@ router.post('/register', async (req, res) => {
       return res.status(409).json({ message: 'El usuario ya existe' });
     }
 
+    //Comprobacion si el correo existe
+    const existingCorreo = await User.findOne({correo});
+    if (existingCorreo){
+      return res.status(409).json({message: 'La direccion de Correo ya existe para un Usuario'});
+    }
+
     // Cifrar la contraseña
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Crear el nuevo usuario
-    const user = new User({ username, password: hashedPassword, role });
+    const user = new User({ username, correo, password: hashedPassword, role });
     await user.save();
 
     res.status(201).json({ message: 'Usuario creado' });
@@ -30,30 +40,32 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const { correo, password } = req.body;
 
   try {
     // Comprobar si el usuario existe
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(401).json({ message: 'Nombre de usuario o contraseña incorrectos' });
+    const email  = await User.findOne({ correo });
+    if (!email) {
+      return res.status(401).json({ message: 'Direccion de correo o contrasena incorrecto' });
     }
 
+
     // Comprobar la contraseña
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, User.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Nombre de usuario o contraseña incorrectos' });
+      return res.status(401).json({ message: 'Direccion de correo o contraseña incorrectos' });
     }
 
     // Generar un JWT
     const token = jwt.sign(
-      { userId: user._id, username: user.username, role: user.role },
-      'mi_secreto',
-      { expiresIn: '1h' }
+      { username: User.username, role: User.role },
+      "mi_secreto",
+      { expiresIn: "1h" }
     );
 
     res.status(200).json({ token });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Error al iniciar sesión' });
   }
 });
