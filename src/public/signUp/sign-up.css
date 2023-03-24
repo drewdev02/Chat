@@ -8,7 +8,7 @@ body {
   .container{
     margin: 5%;
     padding: 20px;
-    border: 3px solid #0D6EFD;
+    border: 3px solid #3787ff;
     border-radius: 15px;
     max-width: 500px;
     min-width: 300px;
@@ -28,7 +28,7 @@ body {
     align-items: center;
   }
   .text{
-    color: #0360ec;
+    color: #3787ff;
     display: block;
     text-align: center;  
   }
@@ -47,27 +47,34 @@ body {
     left: 0;
     margin: 10px;
     padding: 10px;
-    border: 1px solid #0D6EFD;
+    border: 1px solid #3787ff;
     border-radius: 5px;
     font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace;
     background-color: rgba(0, 0, 0, 0.329);
   }
   #role{
-    background-color: #0360ec;
-    border: 1px solid #0D6EFD;
+    background-color: #3787ff;
+    border: 1px solid #3787ff;
   }
   #signUpButton{
     padding: 15px;
     margin: 5px;
     width: 100%;
-    background-color: #0D6EFD;
+    background-color: #3787ff;
     color: white;
-    border: 2px solid aliceblue ;
+    border: 2px solid #3787ffde ;
     border-radius: 10px;
   }
   #signUpButton:hover{
-    background-color: aliceblue;
-    color: #0D6EFD;
-    border: 2px solid #0D6EFD;
-    border-radius: 10px;
+    background-color: #3787ffde;
+    color: #f8f8f8;
+    border: 2px solid #3787ffde;
+    border-radius: 20px;
+    animation-name: border;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes border {
+    0% {border-radius: 10px;}
+  100% {border-radius: 50px;}
   }
