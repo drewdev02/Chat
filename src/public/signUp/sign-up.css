@@ -14,8 +14,8 @@ body {
     min-width: 300px;
   }
   .container-content-center{
-    margin: 10px;
-    padding: 10PX;
+    margin: 5px;
+    padding: 5PX;
   }
   .container-col{
     align-items: center;
@@ -23,8 +23,8 @@ body {
     color:aliceblue;
   }
   .container_form{
-    margin: 10px;
-    padding: 10PX;
+    margin: 5px;
+    padding: 5PX;
     align-items: center;
   }
   .text{
