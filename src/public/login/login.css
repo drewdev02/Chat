@@ -3,14 +3,16 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
+    background-color: rgba(33,33,33);
   }
   .container{
     margin: 5%;
     padding: 20px;
-    border: 3px solid #0D6EFD;
+    border: 3px solid #3787ff;
     border-radius: 15px;
     max-width: 500px;
     min-width: 300px;
+    
   }
   .container_form{
     margin: 10px;
@@ -18,9 +20,10 @@ body {
     align-items: center;
   }
   .text{
-    color: #0360ec;
+    color: #3787ff;
     display: block;
-    text-align: center;  
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';  
   }
   .form-label{
     display: block;
@@ -29,7 +32,8 @@ body {
     text-align: left;
     font-size: 20px;
     display: block;;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace
   }
   .form-input{
     display: block;
@@ -37,36 +41,53 @@ body {
     left: 0;
     margin: 10px;
     padding: 10px;
-    border: 1px solid #0D6EFD;
+    border: 1px solid #3787ff;
     border-radius: 5px;
-  
+    font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.329);
+    color: white;
   }
   #loginButton{
     padding: 15px;
     margin: 5px;
     width: 100%;;
-    background-color: #0D6EFD;
+    background-color: #3787ff;
     color: white;
-    border: 2px solid aliceblue ;
+    border: 2px solid #3787ff ;
     border-radius: 10px;
   }
   #loginButton:hover{
-    background-color: aliceblue;
-    color: #0D6EFD;
-    border: 2px solid #0D6EFD;
-    border-radius: 10px;
+    color: white;
+    border: 2px solid #3787ff;
+    border-radius: 50px;
+    animation-name: borderHover;
+    animation-duration: 1s;
+  }
+  #loginButton:not(:hover) {
+    animation: borderNotHover;
+    animation-delay: 0s;
+    animation-duration: 1s;
+  }
+  @keyframes borderHover {
+    0%{border-radius: 10px;}
+    100%{border-radius: 50px;}
+  }
+  @keyframes borderNotHover {
+    0%{border-radius: 50px;}
+    100%{border-radius: 10px;}
   }
   #sign-up-link{
     margin: 10px 0;
     padding: 10px 0;
     position: relative;
     float: right;
-    color: #0066ff;
+    color: #3787ff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; 
   }
   #sign-up-link:active{
-  color: #0D6EFD;
+  color: #3787ff;
   }
   #sign-up-link:hover{
-    opacity: 0.8;
+    opacity: 0.9;
   }
   

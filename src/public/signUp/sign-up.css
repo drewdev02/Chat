@@ -51,6 +51,7 @@ body {
     border-radius: 5px;
     font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace;
     background-color: rgba(0, 0, 0, 0.329);
+    color: white;
   }
   #role{
     background-color: #3787ff;
@@ -67,14 +68,22 @@ body {
   }
   #signUpButton:hover{
     background-color: #3787ffde;
-    color: #f8f8f8;
+    color: white;
     border: 2px solid #3787ffde;
-    border-radius: 20px;
+    border-radius: 50px;
     animation-name: border;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
   }
-
+  #signUpButton:not(:hover) {
+    animation: borderNotHover;
+    animation-delay: 0s;
+    animation-duration: 1s;
+  }
   @keyframes border {
     0% {border-radius: 10px;}
-  100% {border-radius: 50px;}
+    100% {border-radius: 50px;}
+  }
+    @keyframes borderNotHover {
+    0%{border-radius: 50px;}
+    100%{border-radius: 10px;}
   }
