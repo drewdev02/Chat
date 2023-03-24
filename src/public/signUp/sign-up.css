@@ -3,6 +3,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
+    background-color: rgba(33,33,33);
   }
   .container{
     margin: 5%;
@@ -18,6 +19,8 @@ body {
   }
   .container-col{
     align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:aliceblue;
   }
   .container_form{
     margin: 10px;
@@ -36,7 +39,7 @@ body {
     text-align: left;
     font-size: 20px;
     display: block;;
-    color: black;
+    color: aliceblue;
   }
   .form-input{
     display: block;
@@ -46,6 +49,8 @@ body {
     padding: 10px;
     border: 1px solid #0D6EFD;
     border-radius: 5px;
+    font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.329);
   }
   #role{
     background-color: #0360ec;
@@ -54,7 +59,7 @@ body {
   #signUpButton{
     padding: 15px;
     margin: 5px;
-    width: 100%;;
+    width: 100%;
     background-color: #0D6EFD;
     color: white;
     border: 2px solid aliceblue ;
