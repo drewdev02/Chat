@@ -18,12 +18,12 @@ body {
     margin: 10px;
     padding: 10PX;
     align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'; 
   }
   .text{
     color: #3787ff;
     display: block;
     text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';  
   }
   .form-label{
     display: block;
@@ -33,7 +33,6 @@ body {
     font-size: 20px;
     display: block;;
     color: rgb(255, 255, 255);
-    font-family: CaskaydiaCove Nerd Font Mono, 'Courier New', monospace
   }
   .form-input{
     display: block;
